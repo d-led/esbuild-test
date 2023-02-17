@@ -9,12 +9,14 @@ import (
 
 func main() {
 	result := api.Build(api.BuildOptions{
-		EntryPoints:       []string{"main.ts"},
-		Outdir:            "dist",
-		Format:            api.FormatIIFE,
-		Bundle:            true,
-		MinifyWhitespace:  true,
-		MinifyIdentifiers: true,
+		EntryPoints: []string{
+			"src/main.ts",
+		},
+		Outdir: "dist",
+		Format: api.FormatIIFE,
+		Bundle: true,
+		// MinifyWhitespace:  true,
+		// MinifyIdentifiers: true,
 		Banner: map[string]string{
 			"js": `/* this file is generated! do not edit! */`,
 		},
@@ -25,7 +27,8 @@ func main() {
 			{api.EngineSafari, "11"},
 			{api.EngineEdge, "16"},
 		},
-		Write: true,
+		Inject: []string{},
+		Write:  true,
 	})
 	handleErrors(result.Errors)
 }
