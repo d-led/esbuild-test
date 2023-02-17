@@ -18,5 +18,5 @@ also:
 ## Structure
 
 - [main.go](main.go) is a custom esbuild 'script'
-- [main.ts](main.ts) gets transpiled and bundled into the [dist](dist) directory
+- [src/main.ts](src/main.ts) gets transpiled and bundled into the [dist](dist) directory
 - [index.html](index.html) loads bundled js
