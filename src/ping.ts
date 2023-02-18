@@ -3,8 +3,13 @@ import "whatwg-fetch";
 import { CatalogObject } from "./types";
 
 export async function getObjects(): Promise<CatalogObject[]> {
-  const objects = await fetch("https://api.restful-api.dev/objects");
-  return objects.json();
+  const url = "https://api.restful-api.dev/objects";
+  try {
+    const objects = await fetch(url);
+    return objects.json();
+  } catch (e) {
+    throw new Error(`${e.message} ${url}`);
+  }
 }
 
 export async function ping() {
@@ -18,7 +23,7 @@ export async function ping() {
     (await getObjects()).forEach((obj: CatalogObject) => {
       console.log(`${obj.id}: ${obj.name}`);
     });
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    throw e;
   }
 }

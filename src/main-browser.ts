@@ -3,12 +3,15 @@ import { CatalogObject } from "./types";
 
 $(async function () {
   console.log("ready");
+  try {
+    const objects = await getObjects();
+    fillObjects(objects);
 
-  const objects = await getObjects();
-  fillObjects(objects);
-
-  const delayedResponse = await tryJQueryHttp();
-  showText(`your IP is ${delayedResponse.origin}`);
+    const delayedResponse = await tryJQueryHttp();
+    showText(`your IP is ${delayedResponse.origin}`);
+  } catch (e) {
+    showText(`sorry, ${e.message ?? "an error happened"}`);
+  }
 
   hideSpinner();
 
@@ -35,7 +38,12 @@ function hideSpinner() {
 }
 
 async function tryJQueryHttp(): Promise<any> {
-  return $.getJSON("https://httpbin.org/delay/1").promise();
+  const url = "https://httpbin.org/delay/1";
+  return $.getJSON(url)
+    .catch((r) => {
+      throw new Error(`${r.statusText}, requesting ${url}`);
+    })
+    .promise();
 }
 
 function showText(text: string) {
