@@ -11,9 +11,9 @@ npm run all
 
 also:
 
+- `npm run all` to generate `dist`
 - open [index.html](index.html) in the browser
-- open the console
-- observe the same output as in node
+- observe the effect of the reused code
 
 ## Structure
 

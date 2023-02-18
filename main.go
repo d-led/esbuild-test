@@ -11,6 +11,7 @@ func main() {
 	result := api.Build(api.BuildOptions{
 		EntryPoints: []string{
 			"src/main.ts",
+			"src/main-browser.ts",
 		},
 		Outdir: "dist",
 		Format: api.FormatIIFE,
