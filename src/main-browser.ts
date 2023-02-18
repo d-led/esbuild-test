@@ -7,6 +7,9 @@ $(async function () {
   const objects = await getObjects();
   fillObjects(objects);
 
+  const delayedResponse = await tryJQueryHttp();
+  showText(`your IP is ${delayedResponse.origin}`);
+
   hideSpinner();
 
   console.log("done");
@@ -29,4 +32,12 @@ function fillObjects(objects: CatalogObject[]) {
 
 function hideSpinner() {
   $("#spinner").hide();
+}
+
+async function tryJQueryHttp() : Promise<any> {
+ return $.getJSON('https://httpbin.org/delay/3').promise()
+}
+
+function showText(text: string) {
+  $("#delayed-text").text(text);
 }
