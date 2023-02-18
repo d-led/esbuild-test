@@ -34,8 +34,8 @@ function hideSpinner() {
   $("#spinner").hide();
 }
 
-async function tryJQueryHttp() : Promise<any> {
- return $.getJSON('https://httpbin.org/delay/1').promise()
+async function tryJQueryHttp(): Promise<any> {
+  return $.getJSON("https://httpbin.org/delay/1").promise();
 }
 
 function showText(text: string) {
